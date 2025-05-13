@@ -1,0 +1,4 @@
+name: RulePlugin
+version: '1.0-SNAPSHOT'
+main: com.nekozouneko.rulePlugin.RulePlugin
+api-version: '1.21'
