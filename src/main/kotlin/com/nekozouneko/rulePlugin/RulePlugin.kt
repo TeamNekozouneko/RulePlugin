@@ -1,5 +1,6 @@
 package com.nekozouneko.rulePlugin
 
+import com.nekozouneko.rulePlugin.listener.JoinEvent
 import net.kyori.adventure.text.Component
 import org.bukkit.configuration.file.FileConfiguration
 import org.bukkit.entity.Player
@@ -22,6 +23,8 @@ class RulePlugin : JavaPlugin() {
     override fun onEnable() {
         instance = this
         saveDefaultConfig()
+
+        server.pluginManager.registerEvents(JoinEvent(), this)
     }
 
     override fun onDisable() {}
