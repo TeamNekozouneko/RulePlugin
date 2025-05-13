@@ -1,11 +1,9 @@
 package com.nekozouneko.rulePlugin.commands
 
-import com.nekozouneko.rulePlugin.RulePlugin
 import org.bukkit.command.Command
 import org.bukkit.command.CommandExecutor
 import org.bukkit.command.CommandSender
 import org.bukkit.command.TabExecutor
-import org.bukkit.entity.Player
 
 class RuleCommand : CommandExecutor, TabExecutor {
     interface CommandInterface{
@@ -35,7 +33,7 @@ class RuleCommand : CommandExecutor, TabExecutor {
         p2: String,
         p3: Array<out String>?
     ): MutableList<String>? {
-        if(p3?.size == 0 && p0.hasPermission("rule.reload")) return mutableListOf("reload")
+        if(p3?.size == 1 && p0.hasPermission("rule.reload")) return mutableListOf("reload")
         return null
     }
 }
