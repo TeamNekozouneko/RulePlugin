@@ -10,10 +10,10 @@ import org.bukkit.plugin.java.JavaPlugin
 
 class RulePlugin : JavaPlugin() {
     companion object{
-        lateinit var instance: JavaPlugin
-        lateinit var configuration: FileConfiguration
-        fun getInstance() : JavaPlugin { return instance }
-        fun getConfiguration() : FileConfiguration { return configuration }
+        lateinit var plugin: JavaPlugin
+        lateinit var fileConfiguration: FileConfiguration
+        fun getInstance() : JavaPlugin { return plugin }
+        fun getConfiguration() : FileConfiguration { return fileConfiguration }
 
         fun showRules(player: Player){
             val rules = getConfiguration().getStringList("rules")
@@ -28,10 +28,10 @@ class RulePlugin : JavaPlugin() {
     }
 
     override fun onEnable() {
-        instance = this
+        plugin = this
 
         saveDefaultConfig()
-        configuration = config
+        fileConfiguration = config
 
         server.pluginManager.registerEvents(JoinEvent(), this)
 

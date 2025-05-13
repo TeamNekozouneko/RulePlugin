@@ -1,0 +1,11 @@
+name: RulePlugin
+version: '1.0-SNAPSHOT'
+main: com.nekozouneko.rulePlugin.RulePlugin
+api-version: '1.21'
+folia-supported: true
+author: RunQ
+description: ルールを表示するためだけのプラグイン
+
+commands:
+  rule:
+    description: show rules
