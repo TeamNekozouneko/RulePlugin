@@ -3,6 +3,7 @@ package com.nekozouneko.rulePlugin
 import com.nekozouneko.rulePlugin.commands.RuleCommand
 import com.nekozouneko.rulePlugin.listener.JoinEvent
 import net.kyori.adventure.text.Component
+import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer
 import org.bukkit.command.CommandSender
 import org.bukkit.configuration.file.FileConfiguration
 import org.bukkit.entity.Player
@@ -10,6 +11,7 @@ import org.bukkit.plugin.java.JavaPlugin
 
 class RulePlugin : JavaPlugin() {
     companion object{
+        val deserializer: LegacyComponentSerializer = LegacyComponentSerializer.builder().extractUrls().character(LegacyComponentSerializer.SECTION_CHAR).build();
         lateinit var plugin: JavaPlugin
         lateinit var fileConfiguration: FileConfiguration
         fun getInstance() : JavaPlugin { return plugin }
@@ -18,7 +20,8 @@ class RulePlugin : JavaPlugin() {
         fun showRules(player: Player){
             val rules = getConfiguration().getStringList("rules")
             if(rules.isEmpty()) return
-            for(message in rules) player.sendMessage(Component.text(message))
+            for(message in rules)
+                player.sendMessage(deserializer.deserialize(message)) // これが修正案
         }
         fun showRules(sender: CommandSender){
             val rules = getConfiguration().getStringList("rules")
